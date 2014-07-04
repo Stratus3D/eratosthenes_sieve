@@ -4,7 +4,11 @@ defmodule EratosthenesSieve do
   # See http://elixir-lang.org/docs/stable/Application.Behaviour.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    EratosthenesSieve.Supervisor.start_link
+    {:ok, self()}
+  end
+
+  def stop(_args) do
+    :ok
   end
 
   # Use the Sieve of Eratosthenes algorithm to compute
