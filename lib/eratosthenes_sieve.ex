@@ -16,8 +16,7 @@ defmodule EratosthenesSieve do
   def primes(max) do
     # First, we generate a list of numbers from 1 to
     # the max
-    possible_values = :list.seq(1, max)
-
+    possible_values = :lists.seq(1, max)
     # Let p equal 2, the first prime number we start with
     p = 2
 
@@ -25,7 +24,9 @@ defmodule EratosthenesSieve do
     # possible_values by removing the numbers we know are
     # not prime. To determine which numbers are not prime
     # we simply check to if they are a mulitple of a
-    # prime and also greater than the prime.
+    # prime and also greater than the prime. We skipped 1
+    # by starting at 2 so we add 1 as the first item in
+    # our list of primes
     remove_multiples_of_primes(p, possible_values)
   end
 
@@ -38,9 +39,9 @@ defmodule EratosthenesSieve do
     # its value
     new_values = remove_multiples_of(p, possible_values)
     case find_next_prime(p, new_values) do
-      {:error, :no_prime} ->
+      [] ->
         new_values
-      new_prime ->
+      [new_prime|_] ->
         remove_multiples_of_primes(new_prime, new_values)
     end
   end
@@ -50,18 +51,13 @@ defmodule EratosthenesSieve do
     # is greater than p return it. If we are at the end 
     # of the list, no number will be greater than p, in
     # which case we return {:error, :no_prime}.
-    case :lists.dropwhile(fn(value) ->
+    :lists.filter(fn(value) ->
       value > p
-      end, values) do
-      [] ->
-        {:error, :no_prime}
-      [value|_] ->
-        value
-    end
+    end, values)
   end
 
   # Remove multiples of p that are greater than p
   def remove_multiples_of(p, list) do
-    lc value inlist list, 0 == rem(value, p), do: value
+    lc value inlist list, 0 != rem(value, p) or value <= p, do: value
   end
 end
