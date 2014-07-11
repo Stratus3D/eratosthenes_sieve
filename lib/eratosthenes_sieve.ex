@@ -14,9 +14,9 @@ defmodule EratosthenesSieve do
   # Use the Sieve of Eratosthenes algorithm to compute
   # prime numbers
   def primes(max) do
-    # First, we generate a list of numbers from 1 to
-    # the max
-    possible_values = :lists.seq(1, max)
+    # First, we generate a list of numbers from 2 to
+    # the max (1 is not considered prime)
+    possible_values = :lists.seq(2, max)
     # Let p equal 2, the first prime number we start with
     p = 2
 
