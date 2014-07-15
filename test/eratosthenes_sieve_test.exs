@@ -1,12 +1,6 @@
 defmodule EratosthenesSieveTest do
   use ExUnit.Case
 
-  # There is no need to test OTP
-  # test "start" do
-  #   {:ok, pid} = EratosthenesSieve.start(:normal, [])
-  #   true = is_pid(pid)
-  # end
-
   test "primes" do
     primes_under_7 = [2, 3, 5, 7]
     primes_under_10 = primes_under_7

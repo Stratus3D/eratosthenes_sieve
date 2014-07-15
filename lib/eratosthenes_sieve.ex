@@ -1,16 +1,4 @@
 defmodule EratosthenesSieve do
-  use Application
-
-  # See http://elixir-lang.org/docs/stable/Application.Behaviour.html
-  # for more information on OTP Applications
-  def start(_type, _args) do
-    {:ok, self()}
-  end
-
-  def stop(_args) do
-    :ok
-  end
-
   # Use the Sieve of Eratosthenes algorithm to compute
   # prime numbers
   def primes(max) when max < 2 do
