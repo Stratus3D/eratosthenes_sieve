@@ -1,5 +1,5 @@
 defmodule EratosthenesSieve do
-  use Application.Behaviour
+  use Application
 
   # See http://elixir-lang.org/docs/stable/Application.Behaviour.html
   # for more information on OTP Applications
@@ -13,10 +13,14 @@ defmodule EratosthenesSieve do
 
   # Use the Sieve of Eratosthenes algorithm to compute
   # prime numbers
+  def primes(max) when max < 2 do
+    []
+  end
+
   def primes(max) do
     # First, we generate a list of numbers from 2 to
     # the max (1 is not considered prime)
-    possible_values = :lists.seq(2, max)
+    possible_values = 2..max
     # Let p equal 2, the first prime number we start with
     p = 2
 
@@ -48,16 +52,14 @@ defmodule EratosthenesSieve do
 
   def find_next_prime(p, values) do
     # Find the next prime number in the list. If a number
-    # is greater than p return it. If we are at the end 
+    # is greater than p return it. If we are at the end
     # of the list, no number will be greater than p, in
     # which case we return {:error, :no_prime}.
-    :lists.filter(fn(value) ->
-      value > p
-    end, values)
+    Enum.filter(values, &(&1 > p))
   end
 
   # Remove multiples of p that are greater than p
-  def remove_multiples_of(p, list) do
-    lc value inlist list, 0 != rem(value, p) or value <= p, do: value
+  def remove_multiples_of(p, values) do
+    for value <- values, 0 != rem(value, p) or value <= p, do: value
   end
 end

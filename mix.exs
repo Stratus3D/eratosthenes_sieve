@@ -4,7 +4,7 @@ defmodule EratosthenesSieve.Mixfile do
   def project do
     [ app: :eratosthenes_sieve,
       version: "0.0.1",
-      elixir: "~> 0.10.4-dev",
+      elixir: "~> 0.14.0",
       deps: deps ]
   end
 
