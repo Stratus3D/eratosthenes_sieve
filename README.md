@@ -21,3 +21,9 @@ To test out the application in the console run `iex -pa ebin/` in the project di
 
 ##Issues
 No known issues. If you see something that could be improved feel free to open an issue on GitHub ([https://github.com/Stratus3D/eratosthenes\_sieve/issues](https://github.com/Stratus3D/eratosthenes\_sieve/issues))
+
+##Changelog
+
+* 0.1.1 - 7/16/2014
+  * Application behavior unnecessary. Removed.
+  * Updated Elixir version to 0.14.0.
