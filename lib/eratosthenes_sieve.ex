@@ -1,10 +1,11 @@
 defmodule EratosthenesSieve do
-  # Use the Sieve of Eratosthenes algorithm to compute
-  # prime numbers
+  @doc """
+  Use the Sieve of Eratosthenes algorithm to compute
+  prime numbers
+  """
   def primes(max) when max < 2 do
     []
   end
-
   def primes(max) do
     # First, we generate a list of numbers from 2 to
     # the max (1 is not considered prime)
@@ -22,6 +23,10 @@ defmodule EratosthenesSieve do
     remove_multiples_of_primes(p, possible_values)
   end
 
+  @doc """
+  Remove multiples of all primes in list possible_values, starting with p and
+  continuing until no more primes exist in the list.
+  """
   def remove_multiples_of_primes(p, possible_values) do
     # If a number in the range of possible primes is a
     # multiple of p and greater than two, remove it. We
@@ -38,6 +43,9 @@ defmodule EratosthenesSieve do
     end
   end
 
+  @doc """
+  Returns the first value in the list that is
+  """
   def find_next_prime(p, values) do
     # Find the next prime number in the list. If a number
     # is greater than p return it. If we are at the end
@@ -46,7 +54,10 @@ defmodule EratosthenesSieve do
     Enum.filter(values, &(&1 > p))
   end
 
-  # Remove multiples of p that are greater than p
+  @doc """
+  Remove multiples of p from list of values that are greater than p and not
+  multiples of p.
+  """
   def remove_multiples_of(p, values) do
     for value <- values, 0 != rem(value, p) or value <= p, do: value
   end
